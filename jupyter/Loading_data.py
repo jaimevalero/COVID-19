@@ -1,21 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-# load data
-get_ipython().system(' ls -latr ../data/*.csv')
-# Añadimos un segundo remoto al original, para trabajar con los datos actualizados
-get_ipython().system(' cd ..')
-get_ipython().system(' git add . ')
-get_ipython().system(' git commit -m "Refactor"')
-get_ipython().system(' git remote add original git@github.com:Eclectikus/COVID-19.git')
-get_ipython().system(' git pull -f original master')
-
-get_ipython().system(" jupyter nbconvert --to script 'Loading_data.ipynb'")
-
-
 # In[2]:
 
 
