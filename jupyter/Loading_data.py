@@ -69,16 +69,16 @@ def Enrich_Columns(comunidad):
     # Datos de fallecimientos diarios, en totales y tanto por uno.
     comunidad['Fallecidos hoy absoluto'] = comunidad['Fallecidos'] - comunidad['Fallecidos'].shift(1)
     comunidad['Fallecidos hoy porcentaje'] = comunidad['Fallecidos hoy absoluto']  / comunidad['Fallecidos'] 
-    comunidad['Fallecidos hoy variacion diferencia'] = comunidad['Fallecidos hoy absoluto'] - comunidad['Fallecidos hoy absoluto'].shift(1)
+    comunidad['Fallecidos hoy variacion respecto ayer'] = comunidad['Fallecidos hoy absoluto'] - comunidad['Fallecidos hoy absoluto'].shift(1)
 
     # Datos de Casos diarios,  en totales y tanto por uno.
     comunidad['Casos hoy absoluto'] = comunidad['Casos'] - comunidad['Casos'].shift(1)
     comunidad['Casos hoy porcentaje'] = comunidad['Casos hoy absoluto']  / comunidad['Casos'] 
-    comunidad['Casos hoy variacion diferencia'] = comunidad['Casos hoy absoluto'] - comunidad['Casos hoy absoluto'].shift(1)
+    comunidad['Casos hoy variacion respecto ayer'] = comunidad['Casos hoy absoluto'] - comunidad['Casos hoy absoluto'].shift(1)
     # Convertimos a entero, para quitar decimales
     CONVERT_INT_COLUMNS = ['Fallecidos hoy absoluto', 
-                           'Fallecidos hoy variacion diferencia',
-                           'Casos hoy variacion diferencia',
+                           'Fallecidos hoy variacion respecto ayer',
+                           'Casos hoy variacion respecto ayer',
                            'Casos hoy absoluto',
                            'Hospitalizados',
                            'Curados']
@@ -87,8 +87,8 @@ def Enrich_Columns(comunidad):
         comunidad[column] = comunidad[column].astype(np.int64)
     # ordenamos las filas y columnas
     columnsTitles = ['CCAA', 
-                     'Casos'     , 'Casos hoy absoluto'     , 'Casos hoy variacion diferencia', 'Casos hoy porcentaje'      ,
-                     'Fallecidos', 'Fallecidos hoy absoluto', 'Fallecidos hoy variacion diferencia', 'Fallecidos hoy porcentaje' ,
+                     'Casos'     , 'Casos hoy absoluto'     , 'Casos hoy variacion respecto ayer', 'Casos hoy porcentaje'      ,
+                     'Fallecidos', 'Fallecidos hoy absoluto', 'Fallecidos hoy variacion respecto ayer', 'Fallecidos hoy porcentaje' ,
                      'Curados',
                      'UCI',  
                      'Hospitalizados']
