@@ -23,11 +23,17 @@ df = Carga_All_Files( )
 df.tail()
 
 
-# In[17]:
+# In[25]:
 
 
 def Get_Comunidades_List( ):
     return Carga_All_Files( )['CCAA'].unique()
+
+
+# In[26]:
+
+
+#Get_Comunidades_List()
 
 
 # In[3]:
