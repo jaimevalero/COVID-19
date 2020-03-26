@@ -23,6 +23,13 @@ df = Carga_All_Files( )
 df.tail()
 
 
+# In[17]:
+
+
+def Get_Comunidades_List( ):
+    return Carga_All_Files( )['CCAA'].unique()
+
+
 # In[3]:
 
 
@@ -106,7 +113,6 @@ def Get_Nacion():
 
 # Just for debug purposes
 def Debug_Get_Comunidad():
-    COMUNIDAD_A_CONSIDERAR = 'Madrid'
     comunidad = Get_Comunidad('Madrid')
     return comunidad
 
@@ -129,27 +135,8 @@ Debug_Get_Nacion()
 
 
 
-# In[7]:
-
-
-# Grafica
-
-from matplotlib import pyplot as plt    
-
-fig = plt.figure(figsize=(8, 6), dpi=80)
-plt.plot( comunidad['Fallecidos hoy porcentaje'])
-fig.suptitle('Crecimiento mortalidad '+COMUNIDAD_A_CONSIDERAR+' diario, en porcentaje', fontsize=20)
-plt.ylabel('Fallecidos hoy, respecto al total', fontsize=16)
-
-comunidad['Fallecidos hoy porcentaje']
-
-
 # In[ ]:
 
 
-fig = plt.figure(figsize=(8, 6), dpi=80)
-plt.plot(comunidad['Fallecidos hoy absoluto']) 
-fig.suptitle('Mortalidad '+COMUNIDAD_A_CONSIDERAR+' diaria', fontsize=20)
 
-comunidad['Fallecidos hoy absoluto']
 
