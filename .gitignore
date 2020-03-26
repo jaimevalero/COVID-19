@@ -20,3 +20,4 @@ _aux
 #Hugo
 blogdown
 public
+__pycache__
