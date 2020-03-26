@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 # load data
@@ -13,10 +13,10 @@ get_ipython().system(' git commit -m "Refactor"')
 get_ipython().system(' git remote add original git@github.com:Eclectikus/COVID-19.git')
 get_ipython().system(' git pull -f original master')
 
-get_ipython().system(" jupyter nbconvert --to script 'Loading data.ipynb'")
+get_ipython().system(" jupyter nbconvert --to script 'Loading_data.ipynb'")
 
 
-# In[6]:
+# In[2]:
 
 
 # Load Data
@@ -38,7 +38,7 @@ df = Carga_All_Files( )
 df.tail()
 
 
-# In[9]:
+# In[3]:
 
 
 def Preprocesado():
@@ -55,22 +55,18 @@ def Preprocesado():
 df = Preprocesado()
 
 
-# In[10]:
+# In[4]:
 
 
 import numpy as np
 
-def Get_Comunidad(comunidad):
-
-    # Trabajamos solo con una comunidad
-    df = Preprocesado()
-
-    comunidad = df[(df['CCAA'] == COMUNIDAD_A_CONSIDERAR)].sort_values(by='Fecha')
+def Enrich_Columns(comunidad):
     del comunidad['ID']
     del comunidad['IA']
     del comunidad['Nuevos']
 
-    comunidad.set_index('Fecha', inplace=True)
+    if 'Fecha' in comunidad.columns :
+        comunidad.set_index('Fecha', inplace=True) 
 
     # Datos de fallecimientos diarios, en totales y tanto por uno.
     comunidad['Fallecidos hoy absoluto'] = comunidad['Fallecidos'] - comunidad['Fallecidos'].shift(1)
@@ -100,20 +96,55 @@ def Get_Comunidad(comunidad):
                      'Hospitalizados']
     comunidad = comunidad.reindex(columns=columnsTitles)
     comunidad = comunidad.sort_values(by=['Fecha'], ascending=False)
+    comunidad = comunidad.rename(columns = {'CCAA':'Lugar'})
 
     return comunidad
 
+def Get_Comunidad(nombre_comunidad):
+    # Trabajamos solo con una comunidad
+    df = Preprocesado()
+    df = df[(df['CCAA'] == nombre_comunidad)].sort_values(by='Fecha')
+    df = Enrich_Columns(df)
+    return df
 
-# In[12]:
+def Get_Nacion():
+    df = Preprocesado()
+    df = df.sort_values(by='Fecha')
+    df = df.groupby(['Fecha']).sum()
+    df['CCAA'] = 'España'
+    df = Enrich_Columns(df)
+    return df
 
 
-COMUNIDAD_A_CONSIDERAR = 'Madrid'
+# In[5]:
 
-comunidad = Get_Comunidad(COMUNIDAD_A_CONSIDERAR)
-comunidad
+
+# Just for debug purposes
+def Debug_Get_Comunidad():
+    COMUNIDAD_A_CONSIDERAR = 'Madrid'
+    comunidad = Get_Comunidad('Madrid')
+    return comunidad
+
+Debug_Get_Comunidad()
 
 
 # In[6]:
+
+
+# Just for debug purposes
+def Debug_Get_Nacion():
+    return Get_Nacion()
+
+Debug_Get_Nacion()
+
+
+# In[ ]:
+
+
+
+
+
+# In[7]:
 
 
 # Grafica
@@ -128,7 +159,7 @@ plt.ylabel('Fallecidos hoy, respecto al total', fontsize=16)
 comunidad['Fallecidos hoy porcentaje']
 
 
-# In[7]:
+# In[ ]:
 
 
 fig = plt.figure(figsize=(8, 6), dpi=80)
