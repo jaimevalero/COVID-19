@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 # Load Data
@@ -23,20 +23,20 @@ df = Carga_All_Files( )
 df.tail()
 
 
-# In[25]:
+# In[2]:
 
 
 def Get_Comunidades_List( ):
     return Carga_All_Files( )['CCAA'].unique()
 
 
-# In[26]:
+# In[3]:
 
 
 #Get_Comunidades_List()
 
 
-# In[3]:
+# In[4]:
 
 
 def Preprocesado():
@@ -53,7 +53,7 @@ def Preprocesado():
 df = Preprocesado()
 
 
-# In[4]:
+# In[5]:
 
 
 import numpy as np
@@ -75,6 +75,7 @@ def Enrich_Columns(comunidad):
     comunidad['Casos hoy absoluto'] = comunidad['Casos'] - comunidad['Casos'].shift(1)
     comunidad['Casos hoy porcentaje'] = comunidad['Casos hoy absoluto']  / comunidad['Casos'] 
     comunidad['Casos hoy variacion respecto ayer'] = comunidad['Casos hoy absoluto'] - comunidad['Casos hoy absoluto'].shift(1)
+
     # Convertimos a entero, para quitar decimales
     CONVERT_INT_COLUMNS = ['Fallecidos hoy absoluto', 
                            'Fallecidos hoy variacion respecto ayer',
@@ -85,11 +86,15 @@ def Enrich_Columns(comunidad):
     for column in CONVERT_INT_COLUMNS :
         comunidad[column] = comunidad[column].fillna(0)
         comunidad[column] = comunidad[column].astype(np.int64)
+        
+    comunidad['Proporcion Curados / Casos'] = comunidad['Curados'] / comunidad['Casos'] 
+
     # ordenamos las filas y columnas
     columnsTitles = ['CCAA', 
                      'Casos'     , 'Casos hoy absoluto'     , 'Casos hoy variacion respecto ayer', 'Casos hoy porcentaje'      ,
                      'Fallecidos', 'Fallecidos hoy absoluto', 'Fallecidos hoy variacion respecto ayer', 'Fallecidos hoy porcentaje' ,
                      'Curados',
+                     'Proporcion Curados / Casos',
                      'UCI',  
                      'Hospitalizados']
     comunidad = comunidad.reindex(columns=columnsTitles)
@@ -114,7 +119,7 @@ def Get_Nacion():
     return df
 
 
-# In[5]:
+# In[6]:
 
 
 # Just for debug purposes
@@ -125,7 +130,7 @@ def Debug_Get_Comunidad():
 Debug_Get_Comunidad()
 
 
-# In[6]:
+# In[7]:
 
 
 # Just for debug purposes
