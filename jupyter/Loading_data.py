@@ -88,18 +88,18 @@ def Enrich_Columns(comunidad):
         comunidad[column] = comunidad[column].astype(np.int64)
         
     comunidad['Proporcion Curados / Casos'] = comunidad['Curados'] / comunidad['Casos'] 
-    comunidad['Curados hoy absoluto']       = comunidad['Curados'] - comunidad['Casos'].shift(1)
+    comunidad['Curados hoy absoluto']       = comunidad['Curados'] - comunidad['Curados'].shift(1)
 
     comunidad['Casos excluidos curados'] = comunidad['Casos'] - comunidad['Curados']  
+    comunidad['Tasa Mortalidad'] = comunidad['Fallecidos'] / comunidad['Casos'] 
+    
 
     # ordenamos las filas y columnas
     columnsTitles = ['CCAA', 
                      'Casos'     , 'Casos hoy absoluto'     , 'Casos hoy variacion respecto ayer', 'Casos hoy porcentaje'      ,
                      'Fallecidos', 'Fallecidos hoy absoluto', 'Fallecidos hoy variacion respecto ayer', 'Fallecidos hoy porcentaje' ,
-                     'Curados',
-                     'Casos excluidos curados',
-                     'Curados hoy absoluto',
-                     'Proporcion Curados / Casos',
+                     'Tasa Mortalidad', 
+                     'Curados',    'Curados hoy absoluto', 'Casos excluidos curados', 'Proporcion Curados / Casos',
                      'UCI',  
                      'Hospitalizados']
     comunidad = comunidad.reindex(columns=columnsTitles)
