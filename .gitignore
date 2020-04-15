@@ -21,3 +21,4 @@ _aux
 blogdown
 public
 __pycache__
+.idea

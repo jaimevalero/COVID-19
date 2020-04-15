@@ -86,10 +86,11 @@ def Enrich_Columns(comunidad):
     for column in CONVERT_INT_COLUMNS :
         comunidad[column] = comunidad[column].fillna(0)
         comunidad[column] = comunidad[column].astype(np.int64)
-        
-    comunidad['Proporcion Curados / Casos'] = comunidad['Curados'] / comunidad['Casos'] 
     comunidad['Curados hoy absoluto']       = comunidad['Curados'] - comunidad['Curados'].shift(1)
-
+    try : 
+        comunidad['Proporcion Curados hoy absoluto / Casos hoy absoluto'] = comunidad['Curados hoy absoluto'] / comunidad['Casos hoy absoluto'] 
+    except: 
+        pass
     comunidad['Casos excluidos curados'] = comunidad['Casos'] - comunidad['Curados']  
     comunidad['Tasa Mortalidad'] = comunidad['Fallecidos'] / comunidad['Casos'] 
     
@@ -99,7 +100,7 @@ def Enrich_Columns(comunidad):
                      'Casos'     , 'Casos hoy absoluto'     , 'Casos hoy variacion respecto ayer', 'Casos hoy porcentaje'      ,
                      'Fallecidos', 'Fallecidos hoy absoluto', 'Fallecidos hoy variacion respecto ayer', 'Fallecidos hoy porcentaje' ,
                      'Tasa Mortalidad', 
-                     'Curados',    'Curados hoy absoluto', 'Casos excluidos curados', 'Proporcion Curados / Casos',
+                     'Curados',    'Curados hoy absoluto', 'Casos excluidos curados', 'Proporcion Curados hoy absoluto / Casos hoy absoluto',
                      'UCI',  
                      'Hospitalizados']
     comunidad = comunidad.reindex(columns=columnsTitles)
@@ -143,16 +144,4 @@ def Debug_Get_Nacion():
     return Get_Nacion()
 
 Debug_Get_Nacion()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
