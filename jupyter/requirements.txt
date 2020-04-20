@@ -2,7 +2,6 @@ datetime
 fbprophet
 glob
 IPython.display
-Loading_data
 matplotlib
 numpy
 pandas
