@@ -1,7 +1,34 @@
 
 # coding: utf-8
 
-# In[2]:
+# # Informes y predicciones de COVID-19 en España 
+# 
+# Actualizado diariamente, este documento se [visualiza mejor aquí](https://nbviewer.jupyter.org/github/jaimevalero/COVID-19/blob/master/jupyter/Pain_Graphs.ipynb).
+# 
+# **Indice**
+# 
+# ## [1. Datos de Madrid, hoy](#DatosMadrid)
+# 
+# ## 2. Comparativas y predicciones
+# 
+# | Comparativas de dos dimensiones | Comparativas por comunidades  | Comparativas individuales | Predicciones |
+# | --- | --- | --- |  --- | 
+# | [Casos Vs fallecidos, historicos](#Comparativa_Casos_Fallecidos) | [Comparativa de fallecidos](#Comunidades_Fallecidos) | [Fallecidos hoy, en España](#Pico_España) | [Predicción de fallecidos, en España](#Prediccion_Fallecidos_España)|
+# | [Casos Vs fallecidos, hoy](#Comparativa_Casos_Fallecidos_Hoy) |   [Comparativa de fallecidos, hoy](#Comunidades_Fallecidos_Hoy) | [Fallecidos hoy, en Madrid](#Reporte_Fallecidos_hoy_absoluto_Madrid)|  [Predicción de fallecidos, en Madrid](#Prediccion_Fallecidos_hoy_absoluto_Madrid)
+# | [Casos Vs fallecidos, variación diaria](#Comparativa_Casos_Fallecidos_Variacion_Diaria) |[Comparativa de mortalidad](#Comunidades_Mortalidad)| [Fallecidos hoy, en Cataluña](#Reporte_Fallecidos_hoy_absoluto_Cataluña)|  [Predicción de fallecidos, en Cataluña](#Prediccion_Fallecidos_hoy_absoluto_Cataluña)
+# |  | [Comparativa de infectados](#Comunidades_Casos)| [Fallecidos hoy, en Castilla y León](#Reporte_Fallecidos_hoy_absoluto_CyL)|[Predicción de fallecidos, en Castilla y León](#Prediccion_Fallecidos_hoy_absoluto_CyL)
+# |  |  [Comparativa de infectados, hoy](#Comunidades_Casos_Hoy)| [Fallecidos hoy, en Castilla La Mancha](#Reporte_Fallecidos_hoy_absoluto_CM) |[Predicción de fallecidos, en Castilla La Mancha](#Prediccion_Fallecidos_hoy_absoluto_CM)
+# |  |   [Comparativa de curados](#Curados)| [Hospitalizados hoy, en Madrid](#Reporte_Hospitalizados_Madrid)| [Predicción de hospitalizados hoy, en Madrid](#Prediccion_Hospitalizados_Madrid)|
+#   
+# 
+# 
+# 
+# ## [3. ¿ Son reales estos datos ?](#Reales)
+# 
+# 
+# 
+
+# In[3]:
 
 
 # Cargamos datos
@@ -9,25 +36,21 @@ import Loading_data
 from matplotlib import pyplot as plt    
 import warnings
 warnings.filterwarnings('ignore')
+from IPython.display import display, HTML
 
+def Insertar_Enlace(cell_name):
+    display(HTML('<a id="'+ cell_name +'"></a>'))
+
+Insertar_Enlace('DatosMadrid')
 
 COMUNIDAD_A_CONSIDERAR = 'Madrid'
 comunidad = Loading_data.Get_Comunidad(COMUNIDAD_A_CONSIDERAR)
-comunidad
+comunidad.head()
 
 
 
-# In[2]:
 
-
-import Loading_data 
-
-from Loading_data import Get_Comunidades_List as comunidades
-COMUNIDADES = comunidades()
-COMUNIDADES
-
-
-# In[3]:
+# In[ ]:
 
 
 import pandas as pd
@@ -51,10 +74,12 @@ def Get_Dimensions_All_CCAA(Atributos,media_movil ):
 
 
 
-# In[4]:
+# In[ ]:
 
 
 import scipy.stats as spstats
+from matplotlib import pyplot as plt    
+
 
 def Print_Two_Cordinates_CCAA(df, add_LR=False):
     fig,ax = plt.subplots()
@@ -72,7 +97,7 @@ def Print_Two_Cordinates_CCAA(df, add_LR=False):
         slope, intercept, r_value, p_value, std_err = spstats.linregress(df[df.columns[1]], df[df.columns[2]])
         plt.plot(df[df.columns[1]], intercept + slope*df[df.columns[1]], 'r', label='fitted line')
         #.format(round(slope, 2),round(intercept, 2),round(r_value, 2))
-        note2add = f'slope: {slope:12.4f}\nintercept: {intercept:8.2f}\nr2: {r_value**2:15.4f}'
+        note2add = f"""slope: {slope:12.4f}\nintercept: {intercept:8.2f}\nr2: {r_value**2:15.4f}"""
         plt.annotate(note2add,xy=(0.7,0.3), xycoords='figure fraction')
         
     ax.set_xlabel(df.columns[1])
@@ -82,11 +107,15 @@ def Print_Two_Cordinates_CCAA(df, add_LR=False):
     return plt
 
 
-# In[5]:
+# In[ ]:
 
 
-from IPython.display import display, HTML
 
+
+import Loading_data 
+
+from Loading_data import Get_Comunidades_List as comunidades
+COMUNIDADES = comunidades()
 
 def Comparar_Dos_Dimensiones(Atributos, media_movil=False, add_LR=False ):
     """ Compara dos dimensiones de atributos, Ma indica si hacerlo con la media movil"""
@@ -103,25 +132,30 @@ def Comparar_Dos_Dimensiones(Atributos, media_movil=False, add_LR=False ):
   
 
 
-# In[6]:
+# In[ ]:
 
 
-Comparar_Dos_Dimensiones(['Casos', 'Fallecidos'],add_LR=True )   
+Insertar_Enlace("Comparativa_Casos_Fallecidos")
+Comparar_Dos_Dimensiones(['Casos', 'Fallecidos'],add_LR=True )  
 
 
-# In[7]:
+# In[ ]:
 
+
+Insertar_Enlace("Comparativa_Casos_Fallecidos_Hoy")
 
 Comparar_Dos_Dimensiones(['Casos hoy absoluto', 'Fallecidos hoy absoluto'],add_LR=True )   
 
 
-# In[8]:
+# In[ ]:
 
+
+Insertar_Enlace("Comparativa_Casos_Fallecidos_Variacion_Diaria")
 
 Comparar_Dos_Dimensiones(['Casos hoy variacion respecto ayer', 'Fallecidos hoy variacion respecto ayer'])
 
 
-# In[9]:
+# In[ ]:
 
 
 # Cargamos datos
@@ -151,7 +185,7 @@ def Get_Dimension_CCAA(Dimension,include_nation=False):
     return dimension_df 
 
 
-# In[10]:
+# In[ ]:
 
 
 from matplotlib import pyplot as plt
@@ -215,44 +249,57 @@ def Report_Location(Dimension,include_nation=False):
     return 
 
 
-# In[11]:
+# In[ ]:
 
 
+Insertar_Enlace("Comunidades_Fallecidos")
 Report_Location("Fallecidos")
 
 
-# In[12]:
+# In[ ]:
 
+
+Insertar_Enlace("Comunidades_Fallecidos_Hoy")
 
 Report_Location("Fallecidos hoy absoluto") 
 
 
-# In[13]:
+# In[ ]:
 
+
+Insertar_Enlace("Comunidades_Mortalidad")
 
 Report_Location("Tasa Mortalidad",True)
 
 
-# In[14]:
+# In[ ]:
 
+
+Insertar_Enlace("Comunidades_Casos")
 
 Report_Location("Casos") 
 
 
-# In[15]:
+# In[ ]:
 
+
+Insertar_Enlace("Comunidades_Casos_Hoy")
 
 Report_Location("Casos hoy absoluto")
 
 
-# In[16]:
+# In[ ]:
 
+
+Insertar_Enlace("Comunidades_Curados_Casos_Hoy")
 
 Report_Location("Proporcion Curados hoy absoluto / Casos hoy absoluto",True)
 
 
-# In[17]:
+# In[ ]:
 
+
+Insertar_Enlace("Curados")
 
 Report_Location("Curados")
 
@@ -263,14 +310,19 @@ Report_Location("Curados")
 # ### Casos totales españa, evolucion
 # 
 
-# In[18]:
+# In[ ]:
 
 
 # Casos totales españa, evolucion
 import Loading_data 
 
-def get_fallecidos_nacion() :
+MOVING_AVERAGE_WINDOW=4
+
+def get_fallecidos_nacion(window_size=MOVING_AVERAGE_WINDOW):
     Dimension = 'Fallecidos'
+    
+    Insertar_Enlace("Pico_España")
+
     df = Get_Dimension_CCAA(Dimension)
 
     df['Total Fallecidos'] = df.sum(axis=1)
@@ -283,7 +335,7 @@ def get_fallecidos_nacion() :
 
     #df['MA variation']=  df['MA'] - df['MA'].shift(1)
     df['Total Fallecidos hoy absoluto'] = df['Total Fallecidos'] - df['Total Fallecidos'].shift(1)
-    df['MA Total Fallecidos hoy absoluto'] = df['Total Fallecidos hoy absoluto'].rolling(window=4).mean()
+    df['MA Total Fallecidos hoy absoluto'] = df['Total Fallecidos hoy absoluto'].rolling(window=window_size).mean()
 
     df['Variacion MA Total Fallecidos hoy absoluto'] = df['MA Total Fallecidos hoy absoluto'] - df['MA Total Fallecidos hoy absoluto'].shift(1)
     return df
@@ -304,48 +356,175 @@ df[['Total Fallecidos',
 
 
 
-# In[31]:
+# In[ ]:
 
 
-#### cogemos losd atos para hacer una prevision
-def Develop():
-    df = get_fallecidos_nacion()
-    df = df[['MA Total Fallecidos hoy absoluto']]
+def Get_Predictions_Compare(df,dimension,location='España' , link=None) :
+    if link is not None:
+        Insertar_Enlace(link)
 
-    df=df.rename(columns = {'Fecha':'ds', 'MA Total Fallecidos hoy absoluto' : 'y' })
-    df.dropna()
-    df
+
+    display(HTML("<h2>Comparativa de predicciones, hoy contra días pasados, " +dimension+ " en " +  location+ "</h2>"))
+
+        
+    df = df[[dimension]]
+    df = df[df[dimension] > 0]
+
+    df = df.dropna()
+    df = df.reset_index()
+
+    df.columns = ['ds','y']
+    
+    df_original = df.copy()
+
+    
+    results = pd.DataFrame()
+    array_results_temp = []
+    for i in range(4):
+        
+        if i >= 1 : df = df.iloc[1:]
+    
+        fecha=max(df.ds)
+        fecha_short = str(fecha)[:10]
+        
+
+        df_prophet = fbprophet.Prophet(changepoint_prior_scale=0.15)
+        df_prophet.fit(df)
+
+        # Make a future dataframe 
+        df_forecast = df_prophet.make_future_dataframe(periods=45, freq='D')
+        # Make predictions
+        df_forecast = df_prophet.predict(df_forecast)
+        
+        #print('df_forecast',df_forecast)
+        
+        #df_forecast = df_forecast.drop(df_forecast[df_forecast['ds'] > fecha].index)
+
+        #df_forecast = df_forecast[df_forecast["trend"] >= 0]
+        #df_forecast.loc[df_forecast.yhat_lower < 0, 'yhat_lower'] = 0
+
+        suma = df_forecast.yhat.sum()
+        #print(fecha_short,suma)
+
+            
+        df_forecast[fecha_short] = df_forecast.yhat
+        
+        array_results_temp.append(pd.DataFrame(df_forecast[['ds',fecha_short]]))
+
+
+    df_1 = pd.merge(array_results_temp[0], array_results_temp[1], how ='outer', on ='ds') 
+    df_2 = pd.merge(df_1                 , array_results_temp[2], how ='outer', on ='ds') 
+    df_3 = pd.merge(df_2                 , array_results_temp[3], how ='outer', on ='ds') 
+    df_4 = pd.merge(df_3                 , df_original          , how ='outer', on ='ds') 
+    df_4['datos reales'] = df_4['y']
+    del df_4['y']
+
+        
+    df_chart = df_4
+    df_chart = df_chart.set_index('ds')
+    df_chart = df_chart.head(60)
+
+    for c in df_chart.columns: 
+        df_chart.loc[df_chart[c] < 0, c] = 0
+
+
+    fig = plt.figure(figsize=(8, 6), dpi=80)
+    plt.plot(df_chart) 
+    plt.title("Gráfico de comparativa de predicciones " + dimension +", en " + location )
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=7))
+    plt.xticks(rotation=90)
+    plt.legend(df_chart.columns)
+
+
+
+    #print(df_chart)
+
+    print("Las predicciones del total de "+ dimension+  " en " +  location+  ", cambian dia a dia")
+    print(df_chart.sum(axis=0) )
+
+    return df_chart
+
+
+
+# In[ ]:
+
+
+import fbprophet
+def Get_Prediction_Nacion(df,dimension,location='España' , link=None) :
+    df = df[[dimension]]
+    df = df[df[dimension] > 0]
+
+    df=df.rename(columns = {'Fecha':'ds', dimension : 'y' })
+    df = df.dropna()
+    df = df.reset_index()
+    df.columns = ['ds','y']
+
 
     df_prophet = fbprophet.Prophet(changepoint_prior_scale=0.15)
     df_prophet.fit(df)
 
     # Make a future dataframe for 2 years
-    df_forecast = df_prophet.make_future_dataframe(periods=365 * 2, freq='D')
+    df_forecast = df_prophet.make_future_dataframe(periods=45, freq='D')
     # Make predictions
-    df_forecast = df_prophet.predict(gm_forecast)
+    df_forecast = df_prophet.predict(df_forecast)
+    df_forecast
+
+    df_forecast = df_forecast[df_forecast["yhat"] >= 0]
+    df_forecast.loc[df_forecast.yhat_lower < 0, 'yhat_lower'] = 0
+    
+    if link is not None:
+        Insertar_Enlace(link)
+
+    df_prophet.plot(df_forecast, xlabel = 'Date' )
+    plt.title('Predicción de ' + dimension + ", en " + location )
+
+    suma = df_forecast.trend.sum()
+    display(HTML(pd.DataFrame(df_forecast).to_html()))
+
+    print ("Prediccion total para " + dimension + " : " + str(suma) )
     return df_forecast
     
+    
+Insertar_Enlace("Prediccion_Fallecidos_España")
+    
+prediccion = Get_Prediction_Nacion( df = get_fallecidos_nacion(), 
+                                   dimension = 'Total Fallecidos hoy absoluto')
 
 
-# In[20]:
+# In[ ]:
 
 
-#df=df.rename(columns = {'Fecha':'ds', 'MA Total Fallecidos hoy absoluto' : 'y' })
-#df.dropna()
-#df
+dimension = 'Fallecidos hoy absoluto'
+COMUNIDAD_A_CONSIDERAR = 'España'
+
+link="Prediccion_Fallecidos_hoy_absoluto_España"
 
 
-# In[21]:
+df = get_fallecidos_nacion()[['Total Fallecidos hoy absoluto']] 
+df.columns = [ 'Fallecidos hoy absoluto' ]
+df.sort_index(inplace=True,ascending=False)
+
+prediccion = Get_Predictions_Compare( df = df, 
+                                   dimension = dimension, 
+                                   link = link,
+                                   location  = COMUNIDAD_A_CONSIDERAR
+                                   )
+prediccion
+
+
+# In[ ]:
 
 
 MOVING_AVERAGE_WINDOW = 4
 def report_single_location_single_dimension(location,dimension,window_size=MOVING_AVERAGE_WINDOW):
     
     Dimension = 'Fallecidos'
+    labelMa = f'Moving Average ({window_size}) {dimension}'
 
     df = pd.DataFrame()
     df[dimension] = Get_Dimension_CCAA(dimension)[location]
-    df['Moving Average ' + dimension] = df[dimension].rolling(window=window_size).mean()
+    df[labelMa] = df[dimension].rolling(window=window_size).mean()
 
     display(HTML("<h2>Analisis de ''" + dimension +"'', en " + location + "</h2>"))
     fig = plt.figure(figsize=(8, 6), dpi=80)
@@ -365,44 +544,162 @@ def report_single_location_single_dimension(location,dimension,window_size=MOVIN
 # ### Casos totales españa, evolucion
 # 
 
-# In[22]:
+# In[ ]:
 
 
 
 dimension = 'Fallecidos hoy absoluto'
-report_single_location_single_dimension('Madrid',dimension,4)
+COMUNIDAD_A_CONSIDERAR = 'Madrid'
+
+Insertar_Enlace("Reporte_Fallecidos_hoy_absoluto_Madrid")
+
+report_single_location_single_dimension(COMUNIDAD_A_CONSIDERAR,dimension,4)
 
 
-# In[23]:
+# In[ ]:
+
+
+dimension = 'Fallecidos hoy absoluto'
+COMUNIDAD_A_CONSIDERAR = 'Madrid'
+
+link="Prediccion_Fallecidos_hoy_absoluto_Madrid"
+
+prediccion = Get_Prediction_Nacion( df = Loading_data.Get_Comunidad(COMUNIDAD_A_CONSIDERAR), 
+                                   dimension = dimension, 
+                                   link = link,
+                                   location  = COMUNIDAD_A_CONSIDERAR
+                                   )
+                                 
+
+
+# In[ ]:
+
+
+dimension = 'Fallecidos hoy absoluto'
+COMUNIDAD_A_CONSIDERAR = 'Madrid'
+link="Prediccion_Compare_Fallecidos_hoy_absoluto_Madrid"
+
+df = Loading_data.Get_Comunidad(COMUNIDAD_A_CONSIDERAR)
+prediccion = Get_Predictions_Compare( df = df, 
+                                   dimension = dimension, 
+                                   link = link,
+                                   location  = COMUNIDAD_A_CONSIDERAR
+                                   )
+prediccion
+
+
+# In[ ]:
 
 
 
 dimension = 'Fallecidos hoy absoluto'
-report_single_location_single_dimension('Cataluña',dimension)
+COMUNIDAD_A_CONSIDERAR = 'Cataluña'
+
+Insertar_Enlace("Reporte_Fallecidos_hoy_absoluto_Cataluña")
+
+report_single_location_single_dimension(COMUNIDAD_A_CONSIDERAR,dimension)
 
 
-# In[24]:
+# In[ ]:
+
+
+dimension = 'Fallecidos hoy absoluto'
+COMUNIDAD_A_CONSIDERAR = 'Cataluña'
+link="Prediccion_Fallecidos_hoy_absoluto_Cataluña"
+
+
+prediccion = Get_Prediction_Nacion( df = Loading_data.Get_Comunidad(COMUNIDAD_A_CONSIDERAR), 
+                                   dimension = dimension, 
+                                   link = link,
+                                   location  = COMUNIDAD_A_CONSIDERAR)
+                                 
+
+
+# In[ ]:
 
 
 dimension = 'Fallecidos hoy absoluto'
 report_single_location_single_dimension('Castilla y León',dimension)
 
+Insertar_Enlace("Reporte_Fallecidos_hoy_absoluto_CyL")
 
-# In[25]:
+
+# In[ ]:
+
+
+dimension = 'Fallecidos hoy absoluto'
+COMUNIDAD_A_CONSIDERAR = 'Castilla y León'
+link="Prediccion_Fallecidos_hoy_absoluto_CyL"
+
+prediccion = Get_Prediction_Nacion( df = Loading_data.Get_Comunidad(COMUNIDAD_A_CONSIDERAR), 
+                                   dimension = dimension , 
+                                   link = link,
+                                   location  = COMUNIDAD_A_CONSIDERAR )
+                                 
+                                 
+
+
+# In[ ]:
 
 
 dimension = 'Fallecidos hoy absoluto'
 report_single_location_single_dimension('Castilla La Mancha',dimension)
+Insertar_Enlace("Reporte_Fallecidos_hoy_absoluto_CM")
 
 
-# In[26]:
+# In[ ]:
+
+
+dimension = 'Fallecidos hoy absoluto'
+COMUNIDAD_A_CONSIDERAR = 'Castilla La Mancha'
+link="Prediccion_Fallecidos_hoy_absoluto_CM"
+
+prediccion = Get_Prediction_Nacion( df = Loading_data.Get_Comunidad(COMUNIDAD_A_CONSIDERAR), 
+                                   dimension = dimension , 
+                                   link = link,                                   
+                                   location  = COMUNIDAD_A_CONSIDERAR )
+                                 
+
+
+# In[ ]:
 
 
 dimension = 'Hospitalizados'
 report_single_location_single_dimension('Madrid',dimension)
 
+Insertar_Enlace("Reporte_Hospitalizados_Madrid")
 
-# In[27]:
+
+# In[ ]:
+
+
+dimension = 'Hospitalizados'
+COMUNIDAD_A_CONSIDERAR = 'Madrid'
+link="Prediccion_Hospitalizados_Madrid"
+
+prediccion = Get_Prediction_Nacion( df = Loading_data.Get_Comunidad(COMUNIDAD_A_CONSIDERAR), 
+                                   dimension = dimension , 
+                                   link = link,                                   
+                                   location  = COMUNIDAD_A_CONSIDERAR )
+
+
+# In[ ]:
+
+
+dimension = 'Hospitalizados'
+COMUNIDAD_A_CONSIDERAR = 'Madrid'
+link="Prediccion_Compare_Hospitalizados_hoy_absoluto_Madrid"
+
+df = Loading_data.Get_Comunidad(COMUNIDAD_A_CONSIDERAR)
+prediccion = Get_Predictions_Compare( df = df, 
+                                   dimension = dimension, 
+                                   link = link,
+                                   location  = COMUNIDAD_A_CONSIDERAR
+                                   )
+prediccion
+
+
+# In[ ]:
 
 
 dimension = 'Proporcion Curados hoy absoluto / Casos hoy absoluto'
@@ -415,7 +712,7 @@ report_single_location_single_dimension('Madrid',dimension)
 #  
 #    Entre los días 15 y 31 de marzo fallecieron en Madrid capital, "por todas las causas", aunque la mayoría por coronavirus, 5.950 personas, cuando en 2019, en el mismo lapso, murieron 1.100 personas
 
-# In[28]:
+# In[ ]:
 
 
 from datetime import datetime
@@ -425,6 +722,7 @@ warnings.filterwarnings('ignore')
 COMUNIDAD_A_CONSIDERAR = 'Madrid'
 comunidad = Loading_data.Get_Comunidad(COMUNIDAD_A_CONSIDERAR)
 
+Insertar_Enlace("Reales")
 
 comunidad.head(24).tail(15)['Fallecidos hoy absoluto'].sum()
 comunidad['Fecha'] = comunidad.index
@@ -471,7 +769,7 @@ display(HTML ("El numero de <b>fallecidos en España</b>, hasta ahora es de <b>"
                                            ))
 
 
-# In[29]:
+# In[ ]:
 
 
 from datetime import datetime
@@ -489,7 +787,7 @@ date2 = datetime.strptime('2020-04-01', '%Y-%m-%d')
 comunidad.loc[(comunidad['Fecha']>date1) & (comunidad['Fecha']<date2)]['Fallecidos hoy absoluto'].sum()
 
 
-# In[30]:
+# In[ ]:
 
 
 y = [comunidad['Fallecidos hoy absoluto'].sum(),total_muertos_españa]
@@ -502,5 +800,5 @@ plt.bar(X+0, y,color = 'b', width = 0.25)
 plt.bar(X+0.25, z,color = 'r', width = 0.25)
 
 
-ax.set_title("Diferencia entre las cifras de muertos para Madrid y España entre los ministerios de Sanidad e Interior")
+ax.set_title("Diferencia entre las cifras de muertos\n para Madrid y España\n entre los ministerios de Sanidad e Interior")
 
