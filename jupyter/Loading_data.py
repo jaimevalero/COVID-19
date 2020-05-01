@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
-# In[1]:
+# In[7]:
 
 
 # Load Data
@@ -14,29 +14,40 @@ def Carga_All_Files( ):
     # Iterate trough LIST DIR and 
     for my_file in glob.glob(regexp):
         this_df = pd.read_csv(my_file)
+        for columna in [ 'PCR' , 'Antic.' ] :
+            if columna in this_df.columns : del this_df[columna]
+        this_df = this_df.rename(columns = {'Muertos':'Fallecidos','Hospit.' : 'Hospitalizados'})
+
         this_df['Fecha'] = my_file
         df = pd.concat([df,this_df])
     return df  
 
-df = Carga_All_Files( )
+#df = Carga_All_Files( )
+#nombre_comunidad = 'Madrid'
+#df = df[(df['CCAA'] == nombre_comunidad)].sort_values(by='Fecha')
+#df
 
-df.tail()
+
+# In[15]:
 
 
-# In[2]:
+get_ipython().system(u' head -3  ../data/covi2504.csv ../data/covi2404.csv')
+
+
+# In[17]:
 
 
 def Get_Comunidades_List( ):
     return Carga_All_Files( )['CCAA'].unique()
 
 
-# In[3]:
+# In[18]:
 
 
 #Get_Comunidades_List()
 
 
-# In[4]:
+# In[19]:
 
 
 def Preprocesado():
@@ -50,10 +61,9 @@ def Preprocesado():
     
     return df.sort_values(by='Fecha')
 
-df = Preprocesado()
 
 
-# In[5]:
+# In[20]:
 
 
 import numpy as np
@@ -125,7 +135,7 @@ def Get_Nacion():
     return df
 
 
-# In[6]:
+# In[22]:
 
 
 # Just for debug purposes
@@ -136,7 +146,20 @@ def Debug_Get_Comunidad():
 Debug_Get_Comunidad()
 
 
-# In[7]:
+
+# In[ ]:
+
+
+nombre_comunidad='MADRID'    
+    # Trabajamos solo con una comunidad
+df = Preprocesado()
+df
+#    df = df[(df['CCAA'] == nombre_comunidad)].sort_values(by='Fecha')
+#    df = Enrich_Columns(df)
+#    return df
+
+
+# In[ ]:
 
 
 # Just for debug purposes
