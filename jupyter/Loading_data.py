@@ -31,7 +31,6 @@ def Carga_All_Files( ):
 # In[15]:
 
 
-get_ipython().system(u' head -3  ../data/covi2504.csv ../data/covi2404.csv')
 
 
 # In[17]:
