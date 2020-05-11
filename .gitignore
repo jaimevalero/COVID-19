@@ -15,6 +15,7 @@ blogdown
 # Other files
 .vscode/
 *.code-workspace
+*.dio
 _aux
 .~lock*
 #Hugo
