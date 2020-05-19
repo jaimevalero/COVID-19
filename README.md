@@ -5,9 +5,11 @@
 
 ![2019_nCoV](https://github.com/Eclectikus/COVID-19/blob/master/img/2019_nCoV600x.png "2019_nCoV")
 
-Datos públicos sobre la epidemia de Coronavirus COVID-19 recolectados para su proceso y visualización en **noSoloDatos**:
+Datos públicos oficiales sobre la epidemia de Coronavirus COVID-19 recolectados para su proceso y visualización en **noSoloDatos**:
 
-- [*Seguimiento del COVID-19*](https://nosolodatos.netlify.com/es/covid19/coronavirus).
+[**Seguimiento del COVID-19**](https://nosolodatos.netlify.com/es/covid19/coronavirus)
+
+---
 
 <<<<<<< HEAD
 Para consultar las series temporales proporcionadas por el **Centro de Ciencia de Ingeniería y Sistemas de la Universidad Johns Hopkins** visita [este otro repositorio](https://github.com/Eclectikus/jhutimeseries).
@@ -23,11 +25,13 @@ En este repositorio ([COVID-19/data/](https://github.com/Eclectikus/COVID-19/tre
 
 - **`Serie temporal`**: Este archivo se pude descargar o consultar en [COVID-19/data/st.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/st.csv). Son los datos extraídos de las tablas anteriores, o más apropiadamente la compilación de todos ellos en un solo fichero (**`st.csv`**), que podría no estar en el formato ideal para su tratamiento dependiendo de la configuración de tu entorno de *software*. Por ejemplo para transformar el archivo a un formato amigable para procesar datos de *series de tiempo* en **`R`** se puede utilizar el siguiente código:
 
-~~~~
+~~~~R
 sturl <- "https://raw.githubusercontent.com/Eclectikus/COVID-19/master/data/st.csv"
 stt <- read.csv(sturl, encoding = "UTF-8")
-# Convierte en numéricos los valores del IA (importadas originalmente como texto):
+
+# Convierte en numéricos los valores del IA (importados originalmente como texto):
 stt$IA <- as.numeric(as.character(stt$IA))
+
 # Cambia la columna de fechas (originalmente texto) al formato de fecha utilizado por R:
 stt$Fecha <- as.Date(as.character(stt$Fecha), "%d/%m/%y")
 
@@ -35,5 +39,13 @@ stt$Fecha <- as.Date(as.character(stt$Fecha), "%d/%m/%y")
 
 ---
 
+<<<<<<< HEAD
 Para consultar las series temporales proporcionadas por el **Centro de Ciencia de Ingeniería y Sistemas de la Universidad Johns Hopkins** visita [este otro repositorio](https://github.com/Eclectikus/jhutimeseries).
 >>>>>>> e8dda7ff7ea4d941ecfb9a903c07d975a3c7265f
+=======
+El **`Mapa`** que se utiliza (en formato **`geojson`**) puede ser consultado o descargado en el directorio [COVID-19/mapa/](https://github.com/Eclectikus/COVID-19/tree/master/mapa). La codificación para las CCAA se puede ver en [COVID-19/mapa/codifCCAAgeojson.csv](https://github.com/Eclectikus/COVID-19/blob/master/mapa/codifCCAAgeojson.csv).
+
+---
+
+Para consultar las series temporales proporcionadas por el **Centro de Ciencia de Ingeniería y Sistemas de la Universidad Johns Hopkins** visita [este otro repositorio](https://github.com/Eclectikus/jhutimeseries).
+>>>>>>> 7f1f91a0dc8cbc9d1c7fae593b682bfe7e310a2b
