@@ -12,9 +12,13 @@ Datos públicos oficiales sobre la epidemia de Coronavirus COVID-19 recolectados
 ---
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Para consultar las series temporales proporcionadas por el **Centro de Ciencia de Ingeniería y Sistemas de la Universidad Johns Hopkins** visita [este otro repositorio](https://github.com/Eclectikus/jhutimeseries).
 =======
 En este repositorio ([COVID-19/data/](https://github.com/Eclectikus/COVID-19/tree/master/data)) puedes descargar y/o consultar los siguientes archivos:
+=======
+En este repositorio ([COVID-19/data/](https://github.com/Eclectikus/COVID-19/tree/master/data)) se pueden descargar y/o consultar los siguientes archivos:
+>>>>>>> 2ea9ad576e1ab5d41f5709a42ae2e46b0c3b6130
 
 - **`PDFs`**: Todos los informes diarios originales publicados por el *`Ministerio de Sanidad`*:
   - *Actualizacion_xx_COVID-19.pdf* **>**  Desde la actualización **`37`** correspondiente al **`5`** de **`marzo`** a la **`99`** del **`8`** de **`mayo`**.
