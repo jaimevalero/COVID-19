@@ -6,7 +6,8 @@
 
 Datos públicos oficiales sobre la epidemia de Coronavirus COVID-19 recolectados para su proceso y visualización en **noSoloDatos**:
 
-[**Seguimiento del COVID-19**](https://nosolodatos.netlify.com/es/covid19/coronavirus)
+- [**Seguimiento del COVID-19**](https://nosolodatos.netlify.com/es/covid19/coronavirus)
+- [**Estudio de Seroprevalencia `ENE-Covid19`**](https://nosolodatos.netlify.app/es/covid19/seroprev)
 
 ---
 
