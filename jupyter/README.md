@@ -10,4 +10,4 @@ Notebook creados para analizar los datos
 
 [Analisis de la prevalencia en las olas epidémicas](https://github.com/jaimevalero/COVID-19/blob/master/jupyter/Prevalencia.ipynb)
 
-[Segunda ola. Generador de escenarios](https://github.com/jaimevalero/COVID-19/blob/master/jupyter/Olas-Epidemicas-checkpoint.ipynb)
+[Segunda ola. Generador de escenarios](https://github.com/jaimevalero/COVID-19/blob/master/jupyter/Olas-Epidemicas.ipynb)
