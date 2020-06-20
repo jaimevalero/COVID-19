@@ -7,6 +7,7 @@
 Datos públicos oficiales sobre la epidemia de Coronavirus COVID-19 recolectados para su proceso y visualización en **`noSoloDatos`**:
 
 - [**Seguimiento del COVID-19**](https://nosolodatos.netlify.com/es/covid19/coronavirus). Esta página recopila los datos oficiales principales (casos confirmados, fallecidos, hospitalizados, UCIs...) por CCAA entre el **`5 de marzo de 2020`** y el **`5 de junio de 2020`**.
+- [**Series temporales COVID-19**](https://eclectikus.github.io/jhutimeseries/). Esta página muestra de una manera accesible los datos de **`casos confirmados`**, **`fallecidos`** y **`recuperados`** en el mundo, proporcionados por el *Centro de Ciencia de Ingeniería y Sistemas* de la *Universidad Johns Hopkins* ([repo](https://github.com/CSSEGISandData/COVID-19)).
 - [**Estudio de Seroprevalencia `ENE-Covid19`**](https://nosolodatos.netlify.app/es/covid19/seroprev)
 
 ---
