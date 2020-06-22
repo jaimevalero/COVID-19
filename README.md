@@ -42,8 +42,10 @@ stt$Fecha <- as.Date(as.character(stt$Fecha), "%d/%m/%y")
 ### Seroprevalencia
 
 - **Estudio de seroprevalencia `ENE-Covid19`**: Datos obtenidos del repositorio de [**Datadista**](https://github.com/datadista/datasets/tree/master/COVID%2019) 
-  - **`Ronda 1`** (27 de abril a 11 de mayo): [COVID-19/data/prevalencia1.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia1.csv)
-
+  - **`Ronda 1`** (13 de mayo de 2020): [COVID-19/data/prevalencia1.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia1.csv)
+  - **`Ronda 1`** (Act. 3 de junio de 2020): [COVID-19/data/prevalencia1_2.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia1_2.csv)
+  - **`Ronda 2`** (3 de junio de 2020): [COVID-19/data/prevalencia2_1.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia2_1.csv)
+  
 ---
 
 ## Mapas
