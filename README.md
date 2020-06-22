@@ -41,11 +41,17 @@ stt$Fecha <- as.Date(as.character(stt$Fecha), "%d/%m/%y")
 
 ### Seroprevalencia
 
-- **Estudio de seroprevalencia `ENE-Covid19`**: Datos obtenidos del repositorio de [**Datadista**](https://github.com/datadista/datasets/tree/master/COVID%2019) 
-  - **`Ronda 1`** (13 de mayo de 2020): [COVID-19/data/prevalencia1.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia1.csv)
-  - **`Ronda 1`** (Act. 3 de junio de 2020): [COVID-19/data/prevalencia1_2.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia1_2.csv)
-  - **`Ronda 2`** (3 de junio de 2020): [COVID-19/data/prevalencia2_1.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia2_1.csv)
-  
+**Estudio Nacional de sero-Epidemiología de la infección por SARS-CoV-2 en España (ENE-Covid19)**
+
+- **`PDFs` originales**
+  - **`Ronda 1` (13 de mayo)** **`>`** [*ene_covid19_inf_pre.pdf*](https://github.com/Eclectikus/COVID-19/blob/master/data/ene_covid19_inf_pre.pdf)
+  - **`Ronda 2` (3 de junio)** **`>`** [*ene_covid19_inf_pre2.pdf*](https://github.com/Eclectikus/COVID-19/blob/master/data/ene_covid19_inf_pre2.pdf)
+
+- **Estudio de seroprevalencia `ENE-Covid19`**: Datos obtenidos del repositorio de [**Datadista**](https://github.com/datadista/datasets/tree/master/COVID%2019):  
+  - **`Ronda 1`** (13 de mayo de 2020) **`>`** [COVID-19/data/prevalencia1.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia1.csv)
+  - **`Ronda 1`** (Act. 3 de junio de 2020) **`>`** [COVID-19/data/prevalencia1_2.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia1_2.csv)
+  - **`Ronda 2`** (3 de junio de 2020) **`>`** [COVID-19/data/prevalencia2_1.csv](https://github.com/Eclectikus/COVID-19/blob/master/data/prevalencia2_1.csv)
+
 ---
 
 ## Mapas
