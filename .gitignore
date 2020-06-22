@@ -23,3 +23,4 @@ blogdown
 public
 __pycache__
 .idea
+*.pickle
