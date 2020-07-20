@@ -8,7 +8,8 @@ Datos públicos oficiales sobre la epidemia de Coronavirus COVID-19 recolectados
 
 - [**Seguimiento del COVID-19**](https://nosolodatos.netlify.com/es/covid19/coronavirus). Esta página recopila los datos oficiales principales (casos confirmados, fallecidos, hospitalizados, UCIs...) por CCAA entre el **`5 de marzo de 2020`** y el **`5 de junio de 2020`**.
 - [**Series temporales COVID-19**](https://eclectikus.github.io/jhutimeseries/). Esta página muestra de una manera accesible los datos de **`casos confirmados`**, **`fallecidos`** y **`recuperados`** en el mundo, proporcionados por el *Centro de Ciencia de Ingeniería y Sistemas* de la *Universidad Johns Hopkins* ([repo](https://github.com/CSSEGISandData/COVID-19)).
-- [**Estudio de Seroprevalencia `ENE-Covid19`**](https://nosolodatos.netlify.app/es/covid19/seroprev). **`Ronda 1`** - **`Ronda 2`**. Esta página recopila los resultados del "*Estudio Nacional de sero-Epidemiología de la infección por SARS-CoV-2 en España (ENE-Covid19)*" del **Instituto de Salud Carlos III** ([página oficial del estudio](https://portalcne.isciii.es/enecovid19/)).
+- [**Estudio de Seroprevalencia `ENE-Covid19`**](https://nosolodatos.netlify.app/es/covid19/seroprev). **`Ronda 1`** - **`Ronda 2`**. Esta página recopila los resultados del "*Estudio Nacional de sero-Epidemiología de la infección por SARS-CoV-2 en España (ENE-Covid19)*" del **Instituto de Salud Carlos III** ([página oficial del estudio](https://portalcne.isciii.es/enecovid19/)). [**`Trabajo en proceso`**]
+- [**Cronología del `SARS-CoV-2`**](https://nosolodatos.netlify.app/es/covid19/crono). Cronología de los principales hitos de la pandemia. [**`Trabajo en proceso`**]
 
 ---
 
