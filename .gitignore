@@ -16,6 +16,7 @@ blogdown
 .vscode/
 *.code-workspace
 *.dio
+data
 _aux
 .~lock*
 #Hugo
