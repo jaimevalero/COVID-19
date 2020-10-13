@@ -16,6 +16,7 @@ blogdown
 .vscode/
 *.code-workspace
 *.dio
+*.pdf
 data
 _aux
 .~lock*
