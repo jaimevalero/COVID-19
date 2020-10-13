@@ -1,6 +1,0 @@
---2020-05-11 12:28:23--  https://www.comunidad.madrid/sites/default/files/doc/sanidad/200521_cam_covid19.pdf
-Resolving www.comunidad.madrid (www.comunidad.madrid)... 13.224.106.94, 13.224.106.12, 13.224.106.45, ...
-Connecting to www.comunidad.madrid (www.comunidad.madrid)|13.224.106.94|:443... connected.
-HTTP request sent, awaiting response... 404 ‘wget-log’
-2020-05-11 12:28:26 ERROR 404: Not Found.
-
